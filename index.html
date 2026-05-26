@@ -169,7 +169,17 @@
   .rsvp-success h3 { font-family: 'Fraunces', serif; font-size: 2rem; font-style: italic; color: var(--text-dark); margin-bottom: 0.8rem; }
   .rsvp-success p { font-size: 0.9rem; color: var(--text-body); line-height: 1.8; }
 
-  /* ── VIAGGIO ── */
+  /* Accompagnatori */
+  .accomp-row { display:flex; gap:0.5rem; margin-bottom:0.5rem; align-items:center; }
+  .accomp-row input { flex:1; padding:0.8rem 1rem; background:var(--white); border:1px solid rgba(197,165,90,0.4); font-family:'Inter',sans-serif; font-size:0.88rem; color:var(--text-dark); outline:none; transition:border-color 0.3s; }
+  .accomp-row input:focus { border-color:var(--gold); }
+  .accomp-row input::placeholder { color:var(--text-muted); }
+  .accomp-del { background:none; border:1px solid rgba(200,80,80,0.3); color:rgba(180,60,60,0.6); width:36px; height:36px; cursor:pointer; font-size:1rem; flex-shrink:0; transition:all 0.2s; display:flex; align-items:center; justify-content:center; }
+  .accomp-del:hover { background:rgba(200,80,80,0.08); border-color:rgba(200,80,80,0.5); color:rgba(180,60,60,0.9); }
+  .accomp-add-btn { background:none; border:1px dashed rgba(197,165,90,0.5); color:var(--gold-text); font-family:'Inter',sans-serif; font-size:0.72rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; padding:0.7rem 1.2rem; cursor:pointer; width:100%; transition:all 0.2s; margin-top:0.2rem; }
+  .accomp-add-btn:hover { background:rgba(197,165,90,0.06); border-color:var(--gold); }
+
+
   #viaggio { background: var(--ivory); padding: 6rem 1.5rem; display: flex; flex-direction: column; align-items: center; }
   .dest-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; max-width: 900px; width: 100%; }
   .dest-card { position: relative; overflow: hidden; aspect-ratio: 3/4; display: flex; flex-direction: column; justify-content: flex-end; }
@@ -637,14 +647,10 @@
 
       <div id="extra-fields">
         <div class="form-group">
-          <label class="form-label">Numero di accompagnatori</label>
-          <select class="form-select" id="f-ospiti">
-            <option value="0">Solo io</option>
-            <option value="1">Io + 1 persona</option>
-            <option value="2">Io + 2 persone</option>
-            <option value="3">Io + 3 persone</option>
-            <option value="4">Io + 4 o più persone</option>
-          </select>
+          <label class="form-label">Accompagnatori</label>
+          <div id="accompagnatori-list"></div>
+          <button type="button" class="accomp-add-btn" onclick="addAccompagnatore()">+ Aggiungi accompagnatore</button>
+          <p style="font-size:0.75rem;color:var(--text-muted);margin-top:0.5rem;font-style:italic;">Inserisci il nome e cognome di ogni accompagnatore</p>
         </div>
 
         <div class="form-group">
@@ -878,7 +884,35 @@ document.querySelectorAll('input[name="presenza"]').forEach(function(r) {
   });
 });
 
-// RSVP SUBMIT
+// ACCOMPAGNATORI
+var accompCount = 0;
+function addAccompagnatore() {
+  accompCount++;
+  var list = document.getElementById('accompagnatori-list');
+  var row = document.createElement('div');
+  row.className = 'accomp-row';
+  row.id = 'accomp-row-' + accompCount;
+  var id = accompCount;
+  row.innerHTML = '<input type="text" class="accomp-input" placeholder="Nome e cognome accompagnatore" id="accomp-' + id + '">'
+    + '<button type="button" class="accomp-del" onclick="removeAccompagnatore(' + id + ')" title="Rimuovi">✕</button>';
+  list.appendChild(row);
+  document.getElementById('accomp-' + id).focus();
+}
+function removeAccompagnatore(id) {
+  var row = document.getElementById('accomp-row-' + id);
+  if (row) row.parentNode.removeChild(row);
+}
+function getAccompagnatori() {
+  var inputs = document.querySelectorAll('.accomp-input');
+  var nomi = [];
+  for (var i = 0; i < inputs.length; i++) {
+    var v = inputs[i].value.trim();
+    if (v) nomi.push(v);
+  }
+  return nomi;
+}
+
+
 function submitRSVP() {
   var nome     = document.getElementById('f-nome').value.trim();
   var email    = document.getElementById('f-email').value.trim();
@@ -894,6 +928,8 @@ function submitRSVP() {
   var msg      = msgEl  ? msgEl.value.trim() : '';
   if (!msg) msg = '—';
 
+  var accompagnatori = getAccompagnatori();
+
   var dieteEls = document.querySelectorAll('.checkbox-option input:checked');
   var diete    = [];
   for (var i = 0; i < dieteEls.length; i++) diete.push(dieteEls[i].value);
@@ -904,7 +940,7 @@ function submitRSVP() {
   // Salva in localStorage
   try {
     var existing = JSON.parse(localStorage.getItem('rsvp_responses') || '[]');
-    existing.push({ nome: nome, email: email, presenza: presenza, ospiti: ospiti, diete: diete, msg: msg, ts: new Date().toISOString() });
+    existing.push({ nome: nome, email: email, presenza: presenza, ospiti: String(accompagnatori.length), accompagnatori: accompagnatori, diete: diete, msg: msg, ts: new Date().toISOString() });
     localStorage.setItem('rsvp_responses', JSON.stringify(existing));
   } catch(e) {}
 
@@ -930,7 +966,10 @@ function showRSVPList() {
   var html = '';
   for (var i = 0; i < data.length; i++) {
     var r = data[i];
-    var extra = r.presenza === 'si' ? (r.ospiti === '0' ? 'Solo' : '+' + r.ospiti) : '';
+    var extra = '';
+    if (r.presenza === 'si') {
+      extra = (r.accompagnatori && r.accompagnatori.length) ? '+' + r.accompagnatori.length : 'Solo';
+    }
     html += '<div style="padding:0.8rem 1rem;margin-bottom:0.5rem;background:var(--ivory);border-left:2px solid var(--gold);display:flex;justify-content:space-between;align-items:center;">'
           + '<span><strong style="color:var(--text-dark)">' + r.nome + '</strong>'
           + ' <span style="color:var(--sage-deep);margin-left:0.5rem">' + (r.presenza === 'si' ? '✓ Presente' : '✗ Assente') + '</span></span>'
@@ -1025,7 +1064,8 @@ function renderAdmin() {
   for (var i = 0; i < data.length; i++) {
     if (data[i].presenza === 'si') {
       presenti++;
-      accomp += parseInt(data[i].ospiti || '0', 10);
+      var nomiLen = (data[i].accompagnatori && data[i].accompagnatori.length) ? data[i].accompagnatori.length : parseInt(data[i].ospiti || '0', 10);
+      accomp += nomiLen;
     } else { assenti++; }
   }
   document.getElementById('admin-stats').innerHTML =
@@ -1063,7 +1103,17 @@ function renderAdmin() {
     var orig = idxMap[k];
     var d    = r.ts ? new Date(r.ts).toLocaleDateString('it-IT', {day:'2-digit',month:'2-digit',year:'2-digit',hour:'2-digit',minute:'2-digit'}) : '—';
     var diet = (r.diete && r.diete.length) ? r.diete.join(', ') : '—';
-    var osp  = r.presenza === 'si' ? (r.ospiti === '0' ? 'Solo' : '+' + r.ospiti) : '—';
+    var osp  = '—';
+    if (r.presenza === 'si') {
+      var nomiAccomp = (r.accompagnatori && r.accompagnatori.length) ? r.accompagnatori : [];
+      if (nomiAccomp.length > 0) {
+        osp = nomiAccomp.join(', ');
+      } else if (r.ospiti && r.ospiti !== '0') {
+        osp = '+' + r.ospiti + ' (nomi non inseriti)';
+      } else {
+        osp = 'Solo';
+      }
+    }
     rows += '<tr>'
       + '<td style="color:rgba(250,247,240,0.3);font-size:0.75rem;">' + (k+1) + '</td>'
       + '<td><strong style="color:#FAF7F0;font-weight:500;">' + esc(r.nome) + '</strong></td>'
