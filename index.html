@@ -171,12 +171,12 @@
 
   /* Accompagnatori */
   .accomp-row { display:flex; gap:0.5rem; margin-bottom:0.5rem; align-items:center; }
-  .accomp-row input { flex:1; padding:0.8rem 1rem; background:var(--white); border:1px solid rgba(197,165,90,0.4); font-family:'Inter',sans-serif; font-size:0.88rem; color:var(--text-dark); outline:none; transition:border-color 0.3s; }
+  .accomp-row input { flex:1; padding:0.8rem 1rem; background:var(--white); border:1px solid rgba(197,165,90,0.4); font-family:'Jost',sans-serif; font-size:0.88rem; color:var(--text-dark); outline:none; transition:border-color 0.3s; }
   .accomp-row input:focus { border-color:var(--gold); }
   .accomp-row input::placeholder { color:var(--text-muted); }
   .accomp-del { background:none; border:1px solid rgba(200,80,80,0.3); color:rgba(180,60,60,0.6); width:36px; height:36px; cursor:pointer; font-size:1rem; flex-shrink:0; transition:all 0.2s; display:flex; align-items:center; justify-content:center; }
   .accomp-del:hover { background:rgba(200,80,80,0.08); border-color:rgba(200,80,80,0.5); color:rgba(180,60,60,0.9); }
-  .accomp-add-btn { background:none; border:1px dashed rgba(197,165,90,0.5); color:var(--gold-text); font-family:'Inter',sans-serif; font-size:0.72rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; padding:0.7rem 1.2rem; cursor:pointer; width:100%; transition:all 0.2s; margin-top:0.2rem; }
+  .accomp-add-btn { background:none; border:1px dashed rgba(197,165,90,0.5); color:var(--gold-text); font-family:'Jost',sans-serif; font-size:0.72rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; padding:0.7rem 1.2rem; cursor:pointer; width:100%; transition:all 0.2s; margin-top:0.2rem; }
   .accomp-add-btn:hover { background:rgba(197,165,90,0.06); border-color:var(--gold); }
 
 
@@ -307,15 +307,15 @@
     padding:1rem 2rem; display:flex; align-items:center; justify-content:space-between;
     position:sticky; top:0; z-index:10;
   }
-  .admin-topbar h1 { font-family:'Fraunces',serif; font-size:1.3rem; font-weight:400; font-style:italic; color:#C5A55A; }
+  .admin-topbar h1 { font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:400; font-style:italic; color:#C5A55A; }
   .admin-topbar-right { display:flex; align-items:center; gap:1rem; }
   .admin-btn {
-    font-family:'Inter',sans-serif; font-size:0.7rem; font-weight:500;
+    font-family:'Jost',sans-serif; font-size:0.7rem; font-weight:500;
     letter-spacing:0.1em; text-transform:uppercase; padding:0.55rem 1.2rem;
     border:1px solid rgba(58,48,40,0.3); color:var(--sage-deep); background:transparent;
     cursor:pointer; transition:all 0.25s;
   }
-  .admin-btn:hover { background:rgba(58,48,40,0.08); }
+  .admin-btn:hover { background:rgba(197,165,90,0.12); }
   .admin-btn.danger { border-color:rgba(220,80,80,0.4); color:#E07070; }
   .admin-btn.danger:hover { background:rgba(220,80,80,0.1); }
 
@@ -329,16 +329,16 @@
     background:#0F0B08; border:1px solid rgba(197,165,90,0.15);
     padding:1.5rem 1.2rem; text-align:center;
   }
-  .stat-num { font-family:'Fraunces',serif; font-size:2.5rem; font-weight:300; color:#C5A55A; display:block; }
-  .stat-lbl { font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(58,48,40,0.45); margin-top:0.3rem; display:block; }
+  .stat-num { font-family:'Cormorant Garamond',serif; font-size:2.5rem; font-weight:300; color:#C5A55A; display:block; }
+  .stat-lbl { font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(250,247,240,0.5); margin-top:0.3rem; display:block; }
 
   .admin-filters {
     display:flex; gap:0.6rem; margin-bottom:1.5rem; flex-wrap:wrap;
   }
   .filter-btn {
-    font-family:'Inter',sans-serif; font-size:0.68rem; font-weight:500;
+    font-family:'Jost',sans-serif; font-size:0.68rem; font-weight:500;
     letter-spacing:0.08em; text-transform:uppercase; padding:0.45rem 1rem;
-    border:1px solid rgba(197,165,90,0.25); color:rgba(58,48,40,0.55);
+    border:1px solid rgba(197,165,90,0.25); color:rgba(250,247,240,0.55);
     background:transparent; cursor:pointer; transition:all 0.2s;
   }
   .filter-btn.active, .filter-btn:hover { border-color:#C5A55A; color:#C5A55A; }
@@ -346,7 +346,7 @@
   .admin-table-wrap { overflow-x:auto; }
   .admin-table {
     width:100%; border-collapse:collapse;
-    font-family:'Inter',sans-serif; font-size:0.82rem;
+    font-family:'Jost',sans-serif; font-size:0.82rem;
   }
   .admin-table th {
     text-align:left; padding:0.8rem 1rem;
@@ -356,7 +356,7 @@
   }
   .admin-table td {
     padding:0.9rem 1rem; border-bottom:1px solid rgba(255,255,255,0.05);
-    color:rgba(58,48,40,0.82); vertical-align:top;
+    color:rgba(250,247,240,0.82); vertical-align:top;
   }
   .admin-table tr:hover td { background:rgba(197,165,90,0.04); }
   .badge {
@@ -373,10 +373,10 @@
   .admin-del:hover { color:#E07070; }
   .admin-empty {
     text-align:center; padding:4rem 2rem;
-    font-family:'Fraunces',serif; font-style:italic; font-size:1.1rem;
+    font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.1rem;
     color:rgba(58,48,40,0.3);
   }
-  .admin-msg-cell { max-width:200px; word-break:break-word; font-style:italic; color:rgba(58,48,40,0.55); }
+  .admin-msg-cell { max-width:200px; word-break:break-word; font-style:italic; color:rgba(250,247,240,0.55); }
 
   /* Login overlay */
   #admin-login {
@@ -391,27 +391,27 @@
   }
   .login-box::before { content:''; position:absolute; top:-1px; left:-1px; width:40px; height:40px; border-top:1px solid var(--gold); border-left:1px solid var(--gold); }
   .login-box::after  { content:''; position:absolute; bottom:-1px; right:-1px; width:40px; height:40px; border-bottom:1px solid var(--gold); border-right:1px solid var(--gold); }
-  .login-logo { font-family:'Fraunces',serif; font-size:1.5rem; font-style:italic; font-weight:300; color:#C5A55A; margin-bottom:0.4rem; }
-  .login-sub  { font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(58,48,40,0.35); margin-bottom:2rem; }
+  .login-logo { font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-style:italic; font-weight:300; color:#C5A55A; margin-bottom:0.4rem; }
+  .login-sub  { font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(197,165,90,0.35); margin-bottom:2rem; }
   .login-input {
     width:100%; padding:0.9rem 1rem; margin-bottom:1rem;
-    background:rgba(255,255,255,0.04); border:1px solid rgba(197,165,90,0.25);
-    font-family:'Inter',sans-serif; font-size:0.9rem; color:#FAF7F0;
+    background:rgba(255,255,255,0.06); border:1px solid rgba(197,165,90,0.3);
+    font-family:'Jost',sans-serif; font-size:0.9rem; color:#FAF7F0;
     outline:none; transition:border-color 0.3s; text-align:center; letter-spacing:0.15em;
   }
   .login-input:focus { border-color:#C5A55A; }
-  .login-btn { width:100%; padding:0.9rem; background:#C5A55A; color:var(--white); border:none; font-family:'Inter',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; transition:background 0.3s; }
+  .login-btn { width:100%; padding:0.9rem; background:#C5A55A; color:var(--white); border:none; font-family:'Jost',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; transition:background 0.3s; }
   .login-btn:hover { background:#D4B870; }
   .login-err { color:#E07070; font-size:0.78rem; margin-top:0.8rem; display:none; }
 
   /* Trigger nascosto nel footer */
   .admin-trigger {
-    background:none; border:none; color:rgba(58,48,40,0.08);
+    background:none; border:none; color:rgba(250,247,240,0.08);
     font-size:0.6rem; cursor:pointer; padding:0.2rem; margin-top:1rem;
-    font-family:'Inter',sans-serif; letter-spacing:0.1em;
+    font-family:'Jost',sans-serif; letter-spacing:0.1em;
     transition:color 0.4s;
   }
-  .admin-trigger:hover { color:rgba(58,48,40,0.35); }
+  .admin-trigger:hover { color:rgba(197,165,90,0.35); }
 </style>
 </head>
 <body>
@@ -792,7 +792,7 @@
     <input class="login-input" type="password" id="admin-pwd" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
     <button class="login-btn" onclick="doLogin()">Accedi</button>
     <p class="login-err" id="login-err">Password errata. Riprova.</p>
-    <button onclick="document.getElementById('admin-login').classList.remove('open')" style="margin-top:1.2rem;background:none;border:none;color:rgba(58,48,40,0.3);font-size:0.72rem;cursor:pointer;font-family:Inter,sans-serif;">Annulla</button>
+    <button onclick="document.getElementById('admin-login').classList.remove('open')" style="margin-top:1.2rem;background:none;border:none;color:rgba(250,247,240,0.3);font-size:0.72rem;cursor:pointer;font-family:'Jost',sans-serif;">Annulla</button>
   </div>
 </div>
 
@@ -801,7 +801,7 @@
   <div class="admin-topbar">
     <h1>Gestione Invitati</h1>
     <div class="admin-topbar-right">
-      <span id="admin-date" style="font-size:0.72rem;color:rgba(58,48,40,0.35);font-family:Inter,sans-serif;"></span>
+      <span id="admin-date" style="font-size:0.72rem;color:rgba(250,247,240,0.35);font-family:'Jost',sans-serif;"></span>
       <button class="admin-btn danger" onclick="if(confirm('Eliminare TUTTI gli RSVP?')){localStorage.removeItem(\'rsvp_responses\');renderAdmin();}">Azzera tutto</button>
       <button class="admin-btn" onclick="closeAdmin()">✕ Chiudi</button>
     </div>
@@ -1118,7 +1118,7 @@ function renderAdmin() {
       + '<td>' + esc(diet) + '</td>'
       + '<td style="font-size:0.75rem;color:rgba(58,48,40,0.45);">' + esc(r.email||'—') + '</td>'
       + '<td class="admin-msg-cell">' + (r.msg && r.msg !== '—' ? '"' + esc(r.msg) + '"' : '<span style="opacity:0.3">—</span>') + '</td>'
-      + '<td style="font-size:0.72rem;color:rgba(58,48,40,0.35);white-space:nowrap;">' + d + '</td>'
+      + '<td style="font-size:0.72rem;color:rgba(197,165,90,0.35);white-space:nowrap;">' + d + '</td>'
       + '<td><button class="admin-del" onclick="if(confirm(\'Eliminare questo invitato?\'))deleteRSVP(' + orig + ')" title="Elimina">✕</button></td>'
       + '</tr>';
   }
