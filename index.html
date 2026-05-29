@@ -685,10 +685,7 @@
     </div>
   </div>
 
-  <!-- Lista risposte nascosta - visibile solo nell'admin -->
-  <div id="rsvp-list-wrap" style="display:none;">
-    <div id="rsvp-list"></div>
-  </div>
+
 </section>
 
 
@@ -802,7 +799,7 @@
     <h1>Gestione Invitati</h1>
     <div class="admin-topbar-right">
       <span id="admin-date" style="font-size:0.72rem;color:rgba(250,247,240,0.35);font-family:'Jost',sans-serif;"></span>
-      <button class="admin-btn danger" onclick="if(confirm('Eliminare TUTTI gli RSVP?')){localStorage.removeItem(\'rsvp_responses\');renderAdmin();}">Azzera tutto</button>
+      <button class="admin-btn" onclick="renderAdmin()" style="margin-right:0.5rem;">↻ Aggiorna</button><button class="admin-btn danger" onclick="azzeraTutto()">Azzera tutto</button>
       <button class="admin-btn" onclick="closeAdmin()">✕ Chiudi</button>
     </div>
   </div>
@@ -909,70 +906,113 @@ function getAccompagnatori() {
 }
 
 
+// ── CONFIGURAZIONE SUPABASE ─────────────────────────
+// 1. Vai su https://supabase.com e crea un account gratuito
+// 2. Crea un nuovo progetto
+// 3. Vai su SQL Editor e incolla questo:
+//    CREATE TABLE rsvp (
+//      id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+//      nome text NOT NULL,
+//      email text,
+//      presenza text NOT NULL,
+//      accompagnatori jsonb DEFAULT '[]',
+//      diete jsonb DEFAULT '[]',
+//      msg text,
+//      created_at timestamptz DEFAULT now()
+//    );
+//    ALTER TABLE rsvp ENABLE ROW LEVEL SECURITY;
+//    CREATE POLICY "anon_insert" ON rsvp FOR INSERT TO anon WITH CHECK (true);
+//    CREATE POLICY "anon_select" ON rsvp FOR SELECT TO anon USING (true);
+//    CREATE POLICY "anon_delete" ON rsvp FOR DELETE TO anon USING (true);
+// 4. Vai su Settings > API e copia URL e anon key qui sotto:
+var SUPABASE_URL  = 'https://kkddfoorcvwjhpkngulz.supabase.co/rest/v1/';       // es. https://xyzxyz.supabase.co
+var SUPABASE_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtrZGRmb29yY3Z3amhwa25ndWx6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwMDU2NDIsImV4cCI6MjA5NTU4MTY0Mn0.f2Mnfz_dhFtekSQV2QMteppDGvDTezaSLvUaakplcTo';  // es. eyJhbGci...
+// ────────────────────────────────────────────────────
+
+function supabaseReady() {
+  return SUPABASE_URL !== 'INSERISCI_QUI_IL_TUO_URL' && SUPABASE_KEY !== 'INSERISCI_QUI_LA_TUA_ANON_KEY';
+}
+
+function supabaseHeaders() {
+  return {
+    'Content-Type': 'application/json',
+    'apikey': SUPABASE_KEY,
+    'Authorization': 'Bearer ' + SUPABASE_KEY,
+    'Prefer': 'return=minimal'
+  };
+}
+
 function submitRSVP() {
   var nome     = document.getElementById('f-nome').value.trim();
   var email    = document.getElementById('f-email').value.trim();
   var presenza = document.querySelector('input[name="presenza"]:checked').value;
   var errEl    = document.getElementById('form-error');
 
-  if (!nome || !email) { errEl.style.display = 'block'; return; }
+  if (!nome) { errEl.style.display = 'block'; return; }
   errEl.style.display = 'none';
 
-  var ositEl   = document.getElementById('f-ospiti');
-  var msgEl    = document.getElementById('f-msg');
-  var ospiti   = ositEl ? ositEl.value : '0';
-  var msg      = msgEl  ? msgEl.value.trim() : '';
-  if (!msg) msg = '—';
-
+  var msgEl          = document.getElementById('f-msg');
+  var msg            = (msgEl && msgEl.value.trim()) ? msgEl.value.trim() : '';
   var accompagnatori = getAccompagnatori();
-
-  var dieteEls = document.querySelectorAll('.checkbox-option input:checked');
-  var diete    = [];
+  var dieteEls       = document.querySelectorAll('.checkbox-option input:checked');
+  var diete          = [];
   for (var i = 0; i < dieteEls.length; i++) diete.push(dieteEls[i].value);
 
   var btn = document.querySelector('.form-submit');
-  btn.disabled = true;
+  btn.textContent = 'Invio in corso...';
+  btn.disabled    = true;
 
-  // Salva in localStorage
-  try {
-    var existing = JSON.parse(localStorage.getItem('rsvp_responses') || '[]');
-    existing.push({ nome: nome, email: email, presenza: presenza, ospiti: String(accompagnatori.length), accompagnatori: accompagnatori, diete: diete, msg: msg, ts: new Date().toISOString() });
-    localStorage.setItem('rsvp_responses', JSON.stringify(existing));
-  } catch(e) {}
+  var record = {
+    nome:           nome,
+    email:          email || '',
+    presenza:       presenza,
+    accompagnatori: accompagnatori,
+    diete:          diete,
+    msg:            msg
+  };
 
-  // Mostra messaggio di successo
-  document.getElementById('rsvp-form-wrap').style.display = 'none';
-  var success = document.getElementById('rsvp-success');
-  success.classList.add('visible');
-  if (presenza === 'no') {
-    document.getElementById('success-title').textContent = 'Ci mancherai!';
-    document.getElementById('success-msg').textContent   = 'Ci dispiace tanto che tu non possa essere con noi, ma grazie per averci fatto sapere. Saremo sempre vicini nel cuore.';
+  function showSuccess() {
+    document.getElementById('rsvp-form-wrap').style.display = 'none';
+    var s = document.getElementById('rsvp-success');
+    s.classList.add('visible');
+    if (presenza === 'no') {
+      document.getElementById('success-title').textContent = 'Ci mancherai!';
+      document.getElementById('success-msg').textContent   = 'Ci dispiace tanto che tu non possa essere con noi, ma grazie per averci fatto sapere. Saremo sempre vicini nel cuore.';
+    }
   }
-  showRSVPList();
+
+  if (supabaseReady()) {
+    // Salva su Supabase (visibile da qualsiasi dispositivo)
+    fetch(SUPABASE_URL + '/rest/v1/rsvp', {
+      method:  'POST',
+      headers: supabaseHeaders(),
+      body:    JSON.stringify(record)
+    })
+    .then(function(res) {
+      if (!res.ok) throw new Error('Supabase error ' + res.status);
+      showSuccess();
+    })
+    .catch(function(err) {
+      console.error('Errore Supabase:', err);
+      // Fallback: salva in localStorage
+      salvaSuLocale(record);
+      showSuccess();
+    });
+  } else {
+    // Supabase non configurato: salva in localStorage
+    salvaSuLocale(record);
+    showSuccess();
+  }
 }
 
-function showRSVPList() {
-  var data = [];
-  try { data = JSON.parse(localStorage.getItem('rsvp_responses') || '[]'); } catch(e) {}
-  if (!data.length) return;
-  var wrap = document.getElementById('rsvp-list-wrap');
-  var list = document.getElementById('rsvp-list');
-  if (!wrap || !list) return;
-  wrap.style.display = 'block';
-  var html = '';
-  for (var i = 0; i < data.length; i++) {
-    var r = data[i];
-    var extra = '';
-    if (r.presenza === 'si') {
-      extra = (r.accompagnatori && r.accompagnatori.length) ? '+' + r.accompagnatori.length : 'Solo';
-    }
-    html += '<div style="padding:0.8rem 1rem;margin-bottom:0.5rem;background:var(--ivory);border-left:2px solid var(--gold);display:flex;justify-content:space-between;align-items:center;">'
-          + '<span><strong style="color:var(--text-dark)">' + r.nome + '</strong>'
-          + ' <span style="color:var(--sage-deep);margin-left:0.5rem">' + (r.presenza === 'si' ? '✓ Presente' : '✗ Assente') + '</span></span>'
-          + '<span style="font-size:0.75rem;color:var(--text-muted)">' + extra + '</span>'
-          + '</div>';
-  }
-  list.innerHTML = html;
+function salvaSuLocale(record) {
+  try {
+    var existing = JSON.parse(localStorage.getItem('rsvp_responses') || '[]');
+    record.ts = new Date().toISOString();
+    record.ospiti = String(record.accompagnatori.length);
+    existing.push(record);
+    localStorage.setItem('rsvp_responses', JSON.stringify(existing));
+  } catch(e) {}
 }
 
 // COPY IBAN
@@ -1027,6 +1067,19 @@ function doLogin() {
   }
 }
 
+function azzeraTutto() {
+  if (!confirm('Eliminare TUTTI gli RSVP?')) return;
+  if (supabaseReady()) {
+    fetch(SUPABASE_URL + '/rest/v1/rsvp?id=neq.00000000-0000-0000-0000-000000000000', {
+      method: 'DELETE',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    }).then(function() { renderAdmin(); });
+  } else {
+    localStorage.removeItem('rsvp_responses');
+    renderAdmin();
+  }
+}
+
 function closeAdmin() {
   document.getElementById('admin-panel').classList.remove('open');
   document.body.style.overflow = '';
@@ -1040,17 +1093,50 @@ function setFilter(f, btn) {
   renderAdmin();
 }
 
-function deleteRSVP(idx) {
-  var data = [];
-  try { data = JSON.parse(localStorage.getItem('rsvp_responses') || '[]'); } catch(e) {}
-  data.splice(idx, 1);
-  localStorage.setItem('rsvp_responses', JSON.stringify(data));
-  renderAdmin();
+function deleteRSVP(id, idx) {
+  if (supabaseReady() && id) {
+    fetch(SUPABASE_URL + '/rest/v1/rsvp?id=eq.' + id, {
+      method: 'DELETE',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY
+      }
+    }).then(function() { renderAdmin(); }).catch(function() { renderAdmin(); });
+  } else {
+    var data = [];
+    try { data = JSON.parse(localStorage.getItem('rsvp_responses') || '[]'); } catch(e) {}
+    data.splice(idx, 1);
+    localStorage.setItem('rsvp_responses', JSON.stringify(data));
+    renderAdmin();
+  }
 }
 
 function renderAdmin() {
-  var data = [];
-  try { data = JSON.parse(localStorage.getItem('rsvp_responses') || '[]'); } catch(e) {}
+  if (supabaseReady()) {
+    // Carica da Supabase
+    document.getElementById('admin-tbody').innerHTML = '<tr><td colspan="9" style="text-align:center;color:rgba(197,165,90,0.6);padding:2rem;font-style:italic;">Caricamento...</td></tr>';
+    fetch(SUPABASE_URL + '/rest/v1/rsvp?order=created_at.asc&select=*', {
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY
+      }
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) { renderAdminData(data || []); })
+    .catch(function() {
+      // Fallback localStorage
+      var data = [];
+      try { data = JSON.parse(localStorage.getItem('rsvp_responses') || '[]'); } catch(e) {}
+      renderAdminData(data);
+    });
+  } else {
+    var data = [];
+    try { data = JSON.parse(localStorage.getItem('rsvp_responses') || '[]'); } catch(e) {}
+    renderAdminData(data);
+  }
+}
+
+function renderAdminData(data) {
 
   // Stats
   var totale    = data.length;
@@ -1119,7 +1205,7 @@ function renderAdmin() {
       + '<td style="font-size:0.75rem;color:rgba(58,48,40,0.45);">' + esc(r.email||'—') + '</td>'
       + '<td class="admin-msg-cell">' + (r.msg && r.msg !== '—' ? '"' + esc(r.msg) + '"' : '<span style="opacity:0.3">—</span>') + '</td>'
       + '<td style="font-size:0.72rem;color:rgba(197,165,90,0.35);white-space:nowrap;">' + d + '</td>'
-      + '<td><button class="admin-del" onclick="if(confirm(\'Eliminare questo invitato?\'))deleteRSVP(' + orig + ')" title="Elimina">✕</button></td>'
+      + '<td><button class="admin-del" onclick="if(confirm(\'Eliminare questo invitato?\'))deleteRSVP(\'' + (r.id||'') + '\',' + k + ')" title="Elimina">✕</button></td>'
       + '</tr>';
   }
   tbody.innerHTML = rows;
@@ -1134,8 +1220,6 @@ function esc(s) {
 }
 // ─────────────────────────────────────────────────────
 
-// Load existing RSVP on page load
-window.addEventListener('load', showRSVPList);
 </script>
 </body>
 </html>
