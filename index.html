@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sarah & Simone — 17 Ottobre 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  :root {
+    :root {
     --ivory: #FAF7F0;
     --cream: #F5EFE0;
     --blush: #E8C9BE;
@@ -27,14 +27,14 @@
   }
 
   html { scroll-behavior: smooth; }
-  body { font-family: 'Inter', sans-serif; background: var(--ivory); color: var(--text-dark); overflow-x: hidden; }
+  body { font-family: 'Jost', sans-serif; background: var(--ivory); color: var(--text-dark); overflow-x: hidden; }
 
   /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 200;
     display: flex; justify-content: space-between; align-items: center;
     padding: 1rem 2rem;
-    background: rgba(250,247,240,0.95);
+    background: rgba(58,48,40,0.95);
     backdrop-filter: blur(12px);
     border-bottom: 0.5px solid rgba(197,165,90,0.3);
   }
@@ -47,7 +47,7 @@
   nav a::after { content: ''; position: absolute; bottom: -3px; left: 0; right: 0; height: 1px; background: var(--gold); transform: scaleX(0); transition: transform 0.3s; }
   nav a:hover { color: var(--text-dark); }
   nav a:hover::after { transform: scaleX(1); }
-  .nav-monogram { font-family: 'Fraunces', serif; font-size: 1.4rem; font-style: italic; font-weight: 300; color: var(--gold); letter-spacing: 0.05em; white-space: nowrap; }
+  .nav-monogram { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; font-weight: 300; color: var(--gold); letter-spacing: 0.05em; white-space: nowrap; }
 
   /* Hamburger */
   .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
@@ -65,14 +65,14 @@
   }
   .nav-mobile.open { display: flex; }
   .nav-mobile a {
-    font-family: 'Fraunces', serif; font-style: italic;
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
     font-size: 2rem; font-weight: 300; letter-spacing: 0.05em;
     color: var(--text-dark); text-decoration: none; text-transform: none;
     transition: color 0.3s;
   }
   .nav-mobile a:hover { color: var(--gold); }
   .nav-mobile a::after { display: none; }
-  .nav-mobile-monogram { font-family: 'Fraunces', serif; font-size: 1.2rem; font-style: italic; color: var(--gold); margin-bottom: 1rem; }
+  .nav-mobile-monogram { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-style: italic; color: var(--gold); margin-bottom: 1rem; }
   .nav-mobile-close { position: absolute; top: 1.2rem; right: 1.5rem; background: none; border: none; font-size: 1.8rem; cursor: pointer; color: var(--text-dark); }
 
   /* SECTIONS */
@@ -88,28 +88,28 @@
   .hero-floral.top-right { top: 80px; right: 10px; transform: rotate(15deg) scaleX(-1); }
 
   .hero-pre { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-text); margin-bottom: 1.8rem; animation: fadeUp 1s 0.2s both; }
-  .hero-names { font-family: 'Fraunces', serif; font-size: clamp(3rem, 10vw, 7.5rem); font-weight: 300; line-height: 1; color: var(--text-dark); letter-spacing: -0.01em; animation: fadeUp 1s 0.4s both; }
+  .hero-names { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 10vw, 7.5rem); font-weight: 300; line-height: 1; color: var(--text-dark); letter-spacing: -0.01em; animation: fadeUp 1s 0.4s both; }
   .hero-names span { color: var(--blush-deep); font-style: italic; }
   .hero-divider { display: flex; align-items: center; gap: 1.5rem; margin: 2rem 0; animation: fadeUp 1s 0.6s both; }
-  .hero-divider::before, .hero-divider::after { content: ''; flex: 1; height: 0.5px; background: linear-gradient(to right, transparent, var(--gold), transparent); width: 80px; }
-  .hero-date { font-family: 'Fraunces', serif; font-size: clamp(1rem, 2.5vw, 1.5rem); font-weight: 300; font-style: italic; color: var(--text-mid); letter-spacing: 0.05em; animation: fadeUp 1s 0.8s both; }
+  .hero-divider::before, .hero-divider::after { content: ''; flex: 1; height: 0.5px; background: linear-gradient(to right, var(--blush), var(--gold)), var(--gold)), transparent); width: 80px; }
+  .hero-date { font-family: 'Cormorant Garamond', serif; font-size: clamp(1rem, 2.5vw, 1.5rem); font-weight: 300; font-style: italic; color: var(--text-mid); letter-spacing: 0.05em; animation: fadeUp 1s 0.8s both; }
   .hero-location { font-size: 0.75rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-body); margin-top: 0.6rem; animation: fadeUp 1s 1s both; }
 
   .countdown { display: flex; gap: 1.5rem; margin-top: 3rem; flex-wrap: wrap; justify-content: center; animation: fadeUp 1s 1.2s both; }
   .countdown-item { text-align: center; }
-  .countdown-num { font-family: 'Fraunces', serif; font-size: clamp(2rem, 6vw, 2.8rem); font-weight: 300; color: var(--text-dark); line-height: 1; display: block; }
+  .countdown-num { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 6vw, 2.8rem); font-weight: 300; color: var(--text-dark); line-height: 1; display: block; }
   .countdown-label { font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.3rem; display: block; }
-  .countdown-sep { font-family: 'Fraunces', serif; font-size: 2.5rem; color: var(--gold); align-self: flex-start; margin-top: 0.1rem; }
+  .countdown-sep { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--gold); align-self: flex-start; margin-top: 0.1rem; }
 
   .hero-cta { margin-top: 3rem; animation: fadeUp 1s 1.4s both; }
-  .btn { display: inline-block; font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 1rem 2.5rem; border: 1px solid var(--gold); color: var(--text-dark); text-decoration: none; background: transparent; cursor: pointer; transition: all 0.35s ease; position: relative; overflow: hidden; }
+  .btn { display: inline-block; font-family: 'Jost', sans-serif; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 1rem 2.5rem; border: 1px solid var(--gold); color: var(--text-dark); text-decoration: none; background: transparent; cursor: pointer; transition: all 0.35s ease; position: relative; overflow: hidden; }
   .btn::before { content: ''; position: absolute; inset: 0; background: var(--gold); transform: translateX(-100%); transition: transform 0.35s ease; z-index: -1; }
   .btn:hover { color: var(--white); }
   .btn:hover::before { transform: translateX(0); }
 
   /* ── SECTION COMMONS ── */
   .section-label { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-text); margin-bottom: 0.8rem; }
-  .section-title { font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 5vw, 3.5rem); font-weight: 300; font-style: italic; color: var(--text-dark); text-align: center; line-height: 1.2; margin-bottom: 1rem; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 5vw, 3.5rem); font-weight: 300; font-style: italic; color: var(--text-dark); text-align: center; line-height: 1.2; margin-bottom: 1rem; }
   .section-sub { font-size: 0.88rem; color: var(--text-body); text-align: center; max-width: 480px; line-height: 1.85; margin-bottom: 4rem; }
 
   /* ── STORIA ── */
@@ -121,19 +121,19 @@
   .timeline-item:nth-child(even) .timeline-text { text-align: right; }
   .timeline-dot { position: absolute; left: 50%; top: 0.3rem; width: 10px; height: 10px; background: var(--gold); border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 0 4px var(--white), 0 0 0 5.5px var(--gold-light); }
   .timeline-text { flex: 1; padding: 0 2.5rem; }
-  .timeline-year { font-family: 'Fraunces', serif; font-size: 1rem; font-style: italic; color: var(--gold-text); margin-bottom: 0.3rem; font-weight: 500; }
-  .timeline-heading { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 500; color: var(--text-dark); margin-bottom: 0.5rem; }
+  .timeline-year { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: var(--gold-text); margin-bottom: 0.3rem; font-weight: 500; }
+  .timeline-heading { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 500; color: var(--text-dark); margin-bottom: 0.5rem; }
   .timeline-body { font-size: 0.86rem; color: var(--text-body); line-height: 1.85; }
 
   /* ── GIORNO ── */
   #giorno { background: var(--cream); padding: 6rem 1.5rem; display: flex; flex-direction: column; align-items: center; }
   .program-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; max-width: 900px; width: 100%; }
   .program-card { background: var(--white); padding: 2.5rem 2rem; border: 0.5px solid rgba(197,165,90,0.25); position: relative; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; }
-  .program-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(to right, var(--blush), var(--gold)); }
+  .program-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(to right, var(--blush), var(--gold)), var(--gold)), var(--text-dark)); }
   .program-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(58,48,40,0.08); }
   .card-icon { font-size: 1.8rem; margin-bottom: 1rem; }
   .card-time { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-text); font-weight: 500; margin-bottom: 0.4rem; }
-  .card-title { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 500; color: var(--text-dark); margin-bottom: 0.8rem; }
+  .card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 500; color: var(--text-dark); margin-bottom: 0.8rem; }
   .card-desc { font-size: 0.84rem; color: var(--text-body); line-height: 1.8; }
   .card-address { margin-top: 1rem; padding-top: 1rem; border-top: 0.5px solid var(--cream); font-size: 0.8rem; color: var(--sage-deep); font-style: italic; font-weight: 500; }
 
@@ -145,7 +145,7 @@
   .rsvp-container::after  { bottom: -1px; right: -1px; border-width: 0 1.5px 1.5px 0; }
   .form-group { margin-bottom: 1.6rem; }
   .form-label { display: block; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-mid); margin-bottom: 0.6rem; }
-  .form-input, .form-select, .form-textarea { width: 100%; padding: 0.85rem 1rem; background: var(--white); border: 1px solid rgba(197,165,90,0.4); font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--text-dark); outline: none; transition: border-color 0.3s; appearance: none; border-radius: 0; }
+  .form-input, .form-select, .form-textarea { width: 100%; padding: 0.85rem 1rem; background: var(--white); border: 1px solid rgba(197,165,90,0.4); font-family: 'Jost', sans-serif; font-size: 0.9rem; color: var(--text-dark); outline: none; transition: border-color 0.3s; appearance: none; border-radius: 0; }
   .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); }
   .form-input::placeholder { color: var(--text-muted); }
   .form-textarea { height: 120px; resize: vertical; }
@@ -161,12 +161,12 @@
   .checkbox-option input[type="checkbox"]:checked { background: var(--gold); }
   .checkbox-option input[type="checkbox"]:checked::after { content: '✓'; position: absolute; top: -1px; left: 2px; color: white; font-size: 12px; font-weight: bold; }
   .checkbox-option span { font-size: 0.85rem; color: var(--text-mid); }
-  .form-submit { width: 100%; padding: 1.1rem; margin-top: 1rem; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--white); background: var(--text-dark); border: none; transition: background 0.3s; }
+  .form-submit { width: 100%; padding: 1.1rem; margin-top: 1rem; cursor: pointer; font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--white); background: var(--text-dark); border: none; transition: background 0.3s; }
   .form-submit:hover { background: var(--gold); }
   .rsvp-success { display: none; text-align: center; padding: 3rem 1rem; }
   .rsvp-success.visible { display: block; }
   .rsvp-success-icon { font-size: 3rem; margin-bottom: 1.5rem; }
-  .rsvp-success h3 { font-family: 'Fraunces', serif; font-size: 2rem; font-style: italic; color: var(--text-dark); margin-bottom: 0.8rem; }
+  .rsvp-success h3 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-style: italic; color: var(--text-dark); margin-bottom: 0.8rem; }
   .rsvp-success p { font-size: 0.9rem; color: var(--text-body); line-height: 1.8; }
 
   /* Accompagnatori */
@@ -188,12 +188,12 @@
   .dest-bg-japan { background: url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=600&q=85') center/cover no-repeat; }
   .dest-bg-poly  { background: url('https://images.unsplash.com/photo-1589197331516-4d84b72ebde3?w=600&q=85') center/cover no-repeat; }
   .dest-bg-la    { background: url('https://images.unsplash.com/photo-1534190760961-74e8c1c5c3da?w=600&q=85') center/cover no-repeat; }
-  .dest-overlay  { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,8,2,0.88) 0%, rgba(15,8,2,0.2) 55%, transparent 100%); }
+  .dest-overlay  { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,8,2,0.88) 0%, rgba(58,48,40,0.2) 55%, transparent 100%); }
   .dest-content  { position: relative; z-index: 2; padding: 1.8rem 1.5rem; color: #FFFDF8; }
   .dest-flag  { font-size: 2.2rem; margin-bottom: 0.8rem; display: block; }
-  .dest-name  { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 300; line-height: 1; margin-bottom: 0.3rem; color: #FFFDF8; }
-  .dest-sub   { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,253,248,0.75); margin-bottom: 0.7rem; }
-  .dest-desc  { font-size: 0.82rem; line-height: 1.7; color: rgba(255,253,248,0.88); }
+  .dest-name  { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; line-height: 1; margin-bottom: 0.3rem; color: #FFFDF8; }
+  .dest-sub   { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(242,250,240,0.75); margin-bottom: 0.7rem; }
+  .dest-desc  { font-size: 0.82rem; line-height: 1.7; color: rgba(242,250,240,0.88); }
   .dest-deco  { position: absolute; top: 1.2rem; right: 1.2rem; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; z-index: 2; font-size: 1rem; }
 
   /* ── REGALO ── */
@@ -203,13 +203,13 @@
   .regalo-box::before { top: -1px; left: -1px; border-width: 1.5px 0 0 1.5px; }
   .regalo-box::after  { bottom: -1px; right: -1px; border-width: 0 1.5px 1.5px 0; }
   .regalo-icon  { font-size: 2.5rem; margin-bottom: 1.2rem; display: block; }
-  .regalo-intro { font-family: 'Fraunces', serif; font-size: 1.5rem; font-style: italic; font-weight: 300; color: var(--text-dark); margin-bottom: 0.8rem; }
+  .regalo-intro { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-style: italic; font-weight: 300; color: var(--text-dark); margin-bottom: 0.8rem; }
   .regalo-text  { font-size: 0.88rem; color: var(--text-body); line-height: 1.9; margin-bottom: 2rem; }
   .iban-block   { background: var(--ivory); border: 0.5px solid rgba(197,165,90,0.35); padding: 1.2rem 1.5rem; margin-bottom: 1rem; text-align: left; }
   .iban-label   { font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-text); font-weight: 500; margin-bottom: 0.6rem; display: block; }
   .iban-row     { display: flex; align-items: center; justify-content: space-between; gap: 0.8rem; flex-wrap: wrap; }
-  .iban-number  { font-family: 'Fraunces', serif; font-size: 1.1rem; letter-spacing: 0.05em; color: var(--text-dark); font-weight: 500; word-break: break-all; flex: 1; }
-  .iban-copy    { background: none; border: 1px solid var(--gold); color: var(--text-mid); padding: 0.5rem 1rem; font-family: 'Inter', sans-serif; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: all 0.3s; white-space: nowrap; flex-shrink: 0; }
+  .iban-number  { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; letter-spacing: 0.05em; color: var(--text-dark); font-weight: 500; word-break: break-all; flex: 1; }
+  .iban-copy    { background: none; border: 1px solid var(--gold); color: var(--text-mid); padding: 0.5rem 1rem; font-family: 'Jost', sans-serif; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: all 0.3s; white-space: nowrap; flex-shrink: 0; }
   .iban-copy:hover  { background: var(--gold); color: var(--white); }
   .iban-copy.copied { background: var(--sage-deep); border-color: var(--sage-deep); color: var(--white); }
   .iban-intestato { font-size: 0.82rem; color: var(--text-body); margin-top: 0.6rem; font-style: italic; }
@@ -220,15 +220,15 @@
   .gallery-item { aspect-ratio: 1; background: var(--blush); position: relative; overflow: hidden; }
   .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
   .gallery-item:hover img { transform: scale(1.06); }
-  .gallery-overlay { position: absolute; inset: 0; background: rgba(30,18,8,0); display: flex; align-items: flex-end; padding: 0.7rem; transition: background 0.35s; }
-  .gallery-item:hover .gallery-overlay { background: rgba(30,18,8,0.5); }
-  .gallery-caption { font-family: 'Fraunces', serif; font-style: italic; font-size: 0.82rem; color: rgba(255,253,248,0); transition: color 0.35s; letter-spacing: 0.04em; }
-  .gallery-item:hover .gallery-caption { color: rgba(255,253,248,0.95); }
+  .gallery-overlay { position: absolute; inset: 0; background: rgba(58,48,40,0); display: flex; align-items: flex-end; padding: 0.7rem; transition: background 0.35s; }
+  .gallery-item:hover .gallery-overlay { background: rgba(58,48,40,0.5); }
+  .gallery-caption { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.82rem; color: rgba(242,250,240,0); transition: color 0.35s; letter-spacing: 0.04em; }
+  .gallery-item:hover .gallery-caption { color: rgba(242,250,240,0.95); }
 
   /* ── FOOTER ── */
   footer { background: var(--text-dark); padding: 3rem 2rem; text-align: center; }
-  .footer-monogram { font-family: 'Fraunces', serif; font-size: 2.5rem; font-style: italic; font-weight: 300; color: var(--gold); margin-bottom: 0.8rem; }
-  footer p { font-size: 0.75rem; letter-spacing: 0.1em; color: rgba(250,247,240,0.6); }
+  .footer-monogram { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-style: italic; font-weight: 300; color: var(--gold); margin-bottom: 0.8rem; }
+  footer p { font-size: 0.75rem; letter-spacing: 0.1em; color: rgba(58,48,40,0.6); }
 
   /* ── ANIMATIONS ── */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
@@ -299,11 +299,11 @@
     .section-title { font-size: 1.6rem; }
   }
   /* ── ADMIN PANEL ── */
-  #admin-panel { display:none; position:fixed; inset:0; z-index:9999; background:#0F0B08; overflow-y:auto; }
+  #admin-panel { display:none; position:fixed; inset:0; z-index:9999; background:#1A1410; overflow-y:auto; }
   #admin-panel.open { display:block; }
 
   .admin-topbar {
-    background:#1A1410; border-bottom:1px solid rgba(197,165,90,0.2);
+    background:#2C5A1C; border-bottom:1px solid rgba(58,48,40,0.25);
     padding:1rem 2rem; display:flex; align-items:center; justify-content:space-between;
     position:sticky; top:0; z-index:10;
   }
@@ -312,10 +312,10 @@
   .admin-btn {
     font-family:'Inter',sans-serif; font-size:0.7rem; font-weight:500;
     letter-spacing:0.1em; text-transform:uppercase; padding:0.55rem 1.2rem;
-    border:1px solid rgba(197,165,90,0.4); color:#C5A55A; background:transparent;
+    border:1px solid rgba(58,48,40,0.3); color:var(--sage-deep); background:transparent;
     cursor:pointer; transition:all 0.25s;
   }
-  .admin-btn:hover { background:rgba(197,165,90,0.12); }
+  .admin-btn:hover { background:rgba(58,48,40,0.08); }
   .admin-btn.danger { border-color:rgba(220,80,80,0.4); color:#E07070; }
   .admin-btn.danger:hover { background:rgba(220,80,80,0.1); }
 
@@ -326,11 +326,11 @@
     gap:1rem; margin-bottom:2.5rem;
   }
   .stat-card {
-    background:#1A1410; border:1px solid rgba(197,165,90,0.15);
+    background:#0F0B08; border:1px solid rgba(197,165,90,0.15);
     padding:1.5rem 1.2rem; text-align:center;
   }
   .stat-num { font-family:'Fraunces',serif; font-size:2.5rem; font-weight:300; color:#C5A55A; display:block; }
-  .stat-lbl { font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(250,247,240,0.45); margin-top:0.3rem; display:block; }
+  .stat-lbl { font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(58,48,40,0.45); margin-top:0.3rem; display:block; }
 
   .admin-filters {
     display:flex; gap:0.6rem; margin-bottom:1.5rem; flex-wrap:wrap;
@@ -338,7 +338,7 @@
   .filter-btn {
     font-family:'Inter',sans-serif; font-size:0.68rem; font-weight:500;
     letter-spacing:0.08em; text-transform:uppercase; padding:0.45rem 1rem;
-    border:1px solid rgba(197,165,90,0.25); color:rgba(250,247,240,0.55);
+    border:1px solid rgba(197,165,90,0.25); color:rgba(58,48,40,0.55);
     background:transparent; cursor:pointer; transition:all 0.2s;
   }
   .filter-btn.active, .filter-btn:hover { border-color:#C5A55A; color:#C5A55A; }
@@ -351,12 +351,12 @@
   .admin-table th {
     text-align:left; padding:0.8rem 1rem;
     font-size:0.65rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
-    color:rgba(197,165,90,0.7); border-bottom:1px solid rgba(197,165,90,0.2);
+    color:rgba(58,48,40,0.6); border-bottom:1px solid rgba(197,165,90,0.2);
     white-space:nowrap;
   }
   .admin-table td {
     padding:0.9rem 1rem; border-bottom:1px solid rgba(255,255,255,0.05);
-    color:rgba(250,247,240,0.82); vertical-align:top;
+    color:rgba(58,48,40,0.82); vertical-align:top;
   }
   .admin-table tr:hover td { background:rgba(197,165,90,0.04); }
   .badge {
@@ -364,8 +364,8 @@
     font-size:0.65rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase;
     border-radius:2px;
   }
-  .badge.si  { background:rgba(90,160,90,0.2);  color:#90D890; border:1px solid rgba(90,160,90,0.3); }
-  .badge.no  { background:rgba(200,80,80,0.15); color:#E09090; border:1px solid rgba(200,80,80,0.25); }
+  .badge.si  { background:rgba(58,48,40,0.12); color:#1E3D10; border:1px solid rgba(58,48,40,0.25); }
+  .badge.no  { background:rgba(58,48,40,0.2); color:#D08090; border:1px solid rgba(58,48,40,0.3); }
   .admin-del {
     background:none; border:none; color:rgba(220,80,80,0.5);
     cursor:pointer; font-size:1rem; padding:0.2rem 0.4rem; transition:color 0.2s;
@@ -374,9 +374,9 @@
   .admin-empty {
     text-align:center; padding:4rem 2rem;
     font-family:'Fraunces',serif; font-style:italic; font-size:1.1rem;
-    color:rgba(197,165,90,0.35);
+    color:rgba(58,48,40,0.3);
   }
-  .admin-msg-cell { max-width:200px; word-break:break-word; font-style:italic; color:rgba(250,247,240,0.55); }
+  .admin-msg-cell { max-width:200px; word-break:break-word; font-style:italic; color:rgba(58,48,40,0.55); }
 
   /* Login overlay */
   #admin-login {
@@ -385,14 +385,14 @@
   }
   #admin-login.open { display:flex; }
   .login-box {
-    background:#1A1410; border:1px solid rgba(197,165,90,0.25);
+    background:#0F0B08; border:1px solid rgba(197,165,90,0.25);
     padding:3rem 2.5rem; width:100%; max-width:380px; text-align:center;
     position:relative;
   }
   .login-box::before { content:''; position:absolute; top:-1px; left:-1px; width:40px; height:40px; border-top:1px solid var(--gold); border-left:1px solid var(--gold); }
   .login-box::after  { content:''; position:absolute; bottom:-1px; right:-1px; width:40px; height:40px; border-bottom:1px solid var(--gold); border-right:1px solid var(--gold); }
   .login-logo { font-family:'Fraunces',serif; font-size:1.5rem; font-style:italic; font-weight:300; color:#C5A55A; margin-bottom:0.4rem; }
-  .login-sub  { font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(250,247,240,0.35); margin-bottom:2rem; }
+  .login-sub  { font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(58,48,40,0.35); margin-bottom:2rem; }
   .login-input {
     width:100%; padding:0.9rem 1rem; margin-bottom:1rem;
     background:rgba(255,255,255,0.04); border:1px solid rgba(197,165,90,0.25);
@@ -400,29 +400,25 @@
     outline:none; transition:border-color 0.3s; text-align:center; letter-spacing:0.15em;
   }
   .login-input:focus { border-color:#C5A55A; }
-  .login-btn {
-    width:100%; padding:0.9rem; background:#C5A55A; color:#0F0B08;
-    border:none; font-family:'Inter',sans-serif; font-size:0.75rem; font-weight:600;
-    letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; transition:background 0.3s;
-  }
+  .login-btn { width:100%; padding:0.9rem; background:#C5A55A; color:var(--white); border:none; font-family:'Inter',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; transition:background 0.3s; }
   .login-btn:hover { background:#D4B870; }
   .login-err { color:#E07070; font-size:0.78rem; margin-top:0.8rem; display:none; }
 
   /* Trigger nascosto nel footer */
   .admin-trigger {
-    background:none; border:none; color:rgba(250,247,240,0.08);
+    background:none; border:none; color:rgba(58,48,40,0.08);
     font-size:0.6rem; cursor:pointer; padding:0.2rem; margin-top:1rem;
     font-family:'Inter',sans-serif; letter-spacing:0.1em;
     transition:color 0.4s;
   }
-  .admin-trigger:hover { color:rgba(197,165,90,0.4); }
+  .admin-trigger:hover { color:rgba(58,48,40,0.35); }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <span class="nav-monogram">Sarah & Simone</span>
+  <span class="nav-monogram">Sarah &amp; Simone</span>
   <div class="nav-links">
     <a href="#storia">La nostra storia</a>
     <a href="#giorno">Il grande giorno</a>
@@ -431,6 +427,7 @@
     <a href="#rsvp">Conferma presenza</a>
     <a href="#galleria">Galleria</a>
   </div>
+  <p class="nav-mobile-monogram">Sarah &amp; Simone</p>
   <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -439,7 +436,6 @@
 <!-- MENU MOBILE -->
 <div class="nav-mobile" id="nav-mobile">
   <button class="nav-mobile-close" id="nav-close">✕</button>
-  <p class="nav-mobile-monogram">Sarah & Simone</p>
   <a href="#storia" onclick="closeMenu()">La nostra storia</a>
   <a href="#giorno" onclick="closeMenu()">Il grande giorno</a>
   <a href="#viaggio" onclick="closeMenu()">Viaggio di nozze</a>
@@ -454,28 +450,28 @@
 
   <!-- Botanical SVG decorations -->
   <svg class="hero-floral top-left" width="180" height="220" viewBox="0 0 180 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M90 200 C90 150 60 120 20 100" stroke="#7A9673" stroke-width="1.5" fill="none"/>
-    <path d="M90 200 C90 140 120 100 160 80" stroke="#7A9673" stroke-width="1.5" fill="none"/>
-    <path d="M50 120 C70 100 90 110 80 90" stroke="#7A9673" stroke-width="1" fill="none"/>
-    <path d="M130 95 C110 80 90 95 100 70" stroke="#7A9673" stroke-width="1" fill="none"/>
+    <path d="M90 200 C90 150 60 120 20 100" stroke="#4A7E38" stroke-width="1.5" fill="none"/>
+    <path d="M90 200 C90 140 120 100 160 80" stroke="#4A7E38" stroke-width="1.5" fill="none"/>
+    <path d="M50 120 C70 100 90 110 80 90" stroke="#4A7E38" stroke-width="1" fill="none"/>
+    <path d="M130 95 C110 80 90 95 100 70" stroke="#4A7E38" stroke-width="1" fill="none"/>
     <ellipse cx="35" cy="88" rx="18" ry="10" transform="rotate(-30 35 88)" fill="#A8B9A2"/>
     <ellipse cx="155" cy="68" rx="18" ry="10" transform="rotate(20 155 68)" fill="#A8B9A2"/>
     <ellipse cx="68" cy="78" rx="14" ry="8" transform="rotate(-50 68 78)" fill="#A8B9A2"/>
-    <circle cx="90" cy="30" r="22" fill="#E8C9BE" opacity="0.7"/>
-    <circle cx="90" cy="30" r="10" fill="#D4A090" opacity="0.5"/>
-    <circle cx="62" cy="18" r="15" fill="#E8C9BE" opacity="0.5"/>
+    <circle cx="90" cy="30" r="22" fill="#A8CC88" opacity="0.7"/>
+    <circle cx="90" cy="30" r="10" fill="#5A9E50" opacity="0.5"/>
+    <circle cx="62" cy="18" r="15" fill="#A8CC88" opacity="0.5"/>
     <circle cx="118" cy="22" r="18" fill="#E8D4A0" opacity="0.5"/>
-    <path d="M90 52 L90 200" stroke="#7A9673" stroke-width="1.5" fill="none"/>
+    <path d="M90 52 L90 200" stroke="#4A7E38" stroke-width="1.5" fill="none"/>
   </svg>
 
   <svg class="hero-floral top-right" width="180" height="220" viewBox="0 0 180 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M90 200 C90 150 60 120 20 100" stroke="#7A9673" stroke-width="1.5" fill="none"/>
-    <path d="M90 200 C90 140 120 100 160 80" stroke="#7A9673" stroke-width="1.5" fill="none"/>
+    <path d="M90 200 C90 150 60 120 20 100" stroke="#4A7E38" stroke-width="1.5" fill="none"/>
+    <path d="M90 200 C90 140 120 100 160 80" stroke="#4A7E38" stroke-width="1.5" fill="none"/>
     <ellipse cx="35" cy="88" rx="18" ry="10" transform="rotate(-30 35 88)" fill="#A8B9A2"/>
     <ellipse cx="155" cy="68" rx="18" ry="10" transform="rotate(20 155 68)" fill="#A8B9A2"/>
     <circle cx="90" cy="30" r="22" fill="#C9A84C" opacity="0.4"/>
     <circle cx="62" cy="18" r="15" fill="#E8D4A0" opacity="0.5"/>
-    <path d="M90 52 L90 200" stroke="#7A9673" stroke-width="1.5" fill="none"/>
+    <path d="M90 52 L90 200" stroke="#4A7E38" stroke-width="1.5" fill="none"/>
   </svg>
 
   <p class="hero-pre">— Ci uniremo in matrimonio —</p>
@@ -677,7 +673,7 @@
         </div>
       </div>
 
-      <p id="form-error" style="color:#c0635a; font-size:0.8rem; margin-bottom:1rem; display:none;">Per favore compila tutti i campi obbligatori.</p>
+      <p id="form-error" style="color:#C05050; font-size:0.8rem; margin-bottom:1rem; display:none;">Per favore compila tutti i campi obbligatori.</p>
       <button class="form-submit" onclick="submitRSVP()">Invia la conferma</button>
     </div>
 
@@ -796,7 +792,7 @@
     <input class="login-input" type="password" id="admin-pwd" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
     <button class="login-btn" onclick="doLogin()">Accedi</button>
     <p class="login-err" id="login-err">Password errata. Riprova.</p>
-    <button onclick="document.getElementById('admin-login').classList.remove('open')" style="margin-top:1.2rem;background:none;border:none;color:rgba(250,247,240,0.3);font-size:0.72rem;cursor:pointer;font-family:Inter,sans-serif;">Annulla</button>
+    <button onclick="document.getElementById('admin-login').classList.remove('open')" style="margin-top:1.2rem;background:none;border:none;color:rgba(58,48,40,0.3);font-size:0.72rem;cursor:pointer;font-family:Inter,sans-serif;">Annulla</button>
   </div>
 </div>
 
@@ -805,7 +801,7 @@
   <div class="admin-topbar">
     <h1>Gestione Invitati</h1>
     <div class="admin-topbar-right">
-      <span id="admin-date" style="font-size:0.72rem;color:rgba(250,247,240,0.35);font-family:Inter,sans-serif;"></span>
+      <span id="admin-date" style="font-size:0.72rem;color:rgba(58,48,40,0.35);font-family:Inter,sans-serif;"></span>
       <button class="admin-btn danger" onclick="if(confirm('Eliminare TUTTI gli RSVP?')){localStorage.removeItem(\'rsvp_responses\');renderAdmin();}">Azzera tutto</button>
       <button class="admin-btn" onclick="closeAdmin()">✕ Chiudi</button>
     </div>
@@ -1115,14 +1111,14 @@ function renderAdmin() {
       }
     }
     rows += '<tr>'
-      + '<td style="color:rgba(250,247,240,0.3);font-size:0.75rem;">' + (k+1) + '</td>'
+      + '<td style="color:rgba(58,48,40,0.3);font-size:0.75rem;">' + (k+1) + '</td>'
       + '<td><strong style="color:#FAF7F0;font-weight:500;">' + esc(r.nome) + '</strong></td>'
       + '<td><span class="badge ' + r.presenza + '">' + (r.presenza === 'si' ? 'Presente' : 'Assente') + '</span></td>'
       + '<td>' + osp + '</td>'
       + '<td>' + esc(diet) + '</td>'
-      + '<td style="font-size:0.75rem;color:rgba(250,247,240,0.45);">' + esc(r.email||'—') + '</td>'
+      + '<td style="font-size:0.75rem;color:rgba(58,48,40,0.45);">' + esc(r.email||'—') + '</td>'
       + '<td class="admin-msg-cell">' + (r.msg && r.msg !== '—' ? '"' + esc(r.msg) + '"' : '<span style="opacity:0.3">—</span>') + '</td>'
-      + '<td style="font-size:0.72rem;color:rgba(250,247,240,0.35);white-space:nowrap;">' + d + '</td>'
+      + '<td style="font-size:0.72rem;color:rgba(58,48,40,0.35);white-space:nowrap;">' + d + '</td>'
       + '<td><button class="admin-del" onclick="if(confirm(\'Eliminare questo invitato?\'))deleteRSVP(' + orig + ')" title="Elimina">✕</button></td>'
       + '</tr>';
   }
