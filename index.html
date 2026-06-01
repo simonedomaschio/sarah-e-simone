@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sarah & Simone — 17 Ottobre 2026</title>
+<title>Sarah e Simone — 17 Ottobre 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -228,7 +228,7 @@
   /* ── FOOTER ── */
   footer { background: var(--text-dark); padding: 3rem 2rem; text-align: center; }
   .footer-monogram { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-style: italic; font-weight: 300; color: var(--gold); margin-bottom: 0.8rem; }
-  footer p { font-size: 0.75rem; letter-spacing: 0.1em; color: rgba(58,48,40,0.6); }
+  footer p { font-size: 0.82rem; letter-spacing: 0.1em; color: rgba(250,245,235,0.85); }
 
   /* ── ANIMATIONS ── */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
@@ -423,7 +423,7 @@
 
 <!-- NAV -->
 <nav>
-  <span class="nav-monogram">Sarah &amp; Simone</span>
+  <span class="nav-monogram">Sarah e Simone</span>
   <div class="nav-links">
     <a href="#storia">La nostra storia</a>
     <a href="#giorno">Il grande giorno</a>
@@ -432,7 +432,6 @@
     <a href="#rsvp">Conferma presenza</a>
     <a href="#galleria">Galleria</a>
   </div>
-  <p class="nav-mobile-monogram">Sarah &amp; Simone</p>
   <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -481,7 +480,7 @@
 
   <p class="hero-pre">— Ci uniremo in matrimonio —</p>
 
-  <h1 class="hero-names">Sarah <span>&</span> Simone</h1>
+  <h1 class="hero-names">Sarah <span>e</span> Simone</h1>
 
   <div class="hero-divider">
     <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
@@ -526,7 +525,7 @@
 <section id="storia">
   <p class="section-label reveal">La nostra storia</p>
   <h2 class="section-title reveal">Come tutto è cominciato</h2>
-  <p class="section-sub reveal">Sedici anni di sguardi, incontri e destino. La nostra è una storia che non avremmo mai potuto scrivere meglio.</p>
+  <p class="section-sub reveal">Dodici anni fa due strade si sono incrociate. Da lì in poi, non ci siamo più persi.</p>
 
   <div class="timeline">
     <div class="timeline-item reveal">
@@ -758,20 +757,18 @@
         <span class="iban-number" id="iban-text">IT24 B062 3012 9060 0003 0504 996</span>
         <button class="iban-copy" onclick="copyIBAN(this)" id="iban-btn">Copia IBAN</button>
       </div>
-      <p class="iban-intestato">Intestatari: Messori Sarah &amp; Domaschio Simone</p>
+      <p class="iban-intestato">Intestatari: Messori Sarah e Domaschio Simone</p>
     </div>
 
     <div class="iban-block">
       <p class="iban-label">Causale consigliata</p>
       <div class="iban-row">
-        <span class="iban-number" style="font-size:0.95rem;" id="causale-text">Regalo matrimonio Sarah &amp; Simone — 17.10.2026</span>
+        <span class="iban-number" style="font-size:0.95rem;" id="causale-text">Regalo matrimonio Simone e Sarah</span>
         <button class="iban-copy" onclick="copyCausale(this)">Copia</button>
       </div>
     </div>
 
-    <p style="font-size:0.75rem; color:var(--text-light); margin-top:1.5rem; line-height:1.8;">
-      In alternativa potete usare <strong style="color:var(--text-mid)">PayPal</strong> o <strong style="color:var(--text-mid)">Satispay</strong> se lo preferite — contattateci direttamente per i dettagli.
-    </p>
+
   </div>
 </section>
 
@@ -779,9 +776,9 @@
 
 <!-- FOOTER -->
 <footer>
-  <p class="footer-monogram">Sarah & Simone</p>
+  <p class="footer-monogram">Sarah e Simone</p>
   <p>17 · 10 · 2026 — Corte del Mulino, Fellegara (RE)</p>
-  <p style="margin-top:0.4rem; opacity:0.6">Con amore ♡</p>
+  <p style="margin-top:0.4rem;">Con amore ♡</p>
   <br>
   <button class="admin-trigger" onclick="openAdminLogin()">● admin</button>
 </footer>
@@ -789,7 +786,7 @@
 <!-- LOGIN ADMIN -->
 <div id="admin-login">
   <div class="login-box">
-    <p class="login-logo">Sarah & Simone</p>
+    <p class="login-logo">Sarah e Simone</p>
     <p class="login-sub">Area amministratori</p>
     <input class="login-input" type="password" id="admin-pwd" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
     <button class="login-btn" onclick="doLogin()">Accedi</button>
@@ -1033,7 +1030,7 @@ function copyIBAN(btn) {
   });
 }
 function copyCausale(btn) {
-  navigator.clipboard.writeText('Regalo matrimonio Sarah & Simone - 17.10.2026').then(function() {
+  navigator.clipboard.writeText('Regalo matrimonio Simone e Sarah - 17.10.2026').then(function() {
     btn.textContent = 'Copiato!';
     btn.classList.add('copied');
     setTimeout(function() { btn.textContent = 'Copia'; btn.classList.remove('copied'); }, 2500);
