@@ -830,7 +830,7 @@
     <h1>Gestione Invitati</h1>
     <div class="admin-topbar-right">
       <span id="admin-date" style="font-size:0.72rem;color:rgba(245,239,228,0.7);font-family:'Jost',sans-serif;"></span>
-      <button class="admin-btn" onclick="renderAdmin()" style="margin-right:0.5rem;">↻ Aggiorna</button><button class="admin-btn danger" onclick="azzeraTutto()">Azzera tutto</button>
+      <button class="admin-btn" onclick="renderAdmin()" style="margin-right:0.5rem;">↻ Aggiorna</button><button class="admin-btn" onclick="esportaExcel()" style="margin-right:0.5rem;">⬇ Excel</button><button class="admin-btn danger" onclick="azzeraTutto()">Azzera tutto</button>
       <button class="admin-btn" onclick="closeAdmin()">✕ Chiudi</button>
     </div>
   </div>
@@ -1134,6 +1134,75 @@ function doLogin() {
     document.getElementById('login-err').style.display = 'block';
     document.getElementById('admin-pwd').value = '';
     document.getElementById('admin-pwd').focus();
+  }
+}
+
+function esportaExcel() {
+  // Recupera dati da Supabase o localStorage
+  function doExport(data) {
+    if (!data || !data.length) { alert('Nessun dato da esportare.'); return; }
+
+    // Intestazioni colonne
+    var cols = ['Nome','Email','Partecipa','Accompagnatori','Diete','Note','Data'];
+    var rows = [cols];
+
+    for (var i = 0; i < data.length; i++) {
+      var r = data[i];
+
+      var accompArr = [];
+      try { accompArr = r.accompagnatori ? (typeof r.accompagnatori === 'string' ? JSON.parse(r.accompagnatori) : r.accompagnatori) : []; } catch(e) {}
+      var dieteArr = [];
+      try { dieteArr = r.diete ? (typeof r.diete === 'string' ? JSON.parse(r.diete) : r.diete) : []; } catch(e) {}
+
+      var dataStr = '—';
+      var rawDate = r.created_at || r.ts;
+      if (rawDate) { try { dataStr = new Date(rawDate).toLocaleString('it-IT'); } catch(e) {} }
+
+      rows.push([
+        r.nome || '',
+        r.email || '',
+        r.presenza === 'si' ? 'Presente' : 'Assente',
+        accompArr.join(', ') || 'Solo',
+        dieteArr.join(', ') || '—',
+        r.msg || '—',
+        dataStr
+      ]);
+    }
+
+    // Crea CSV (compatibile con Excel)
+    var csv = rows.map(function(row) {
+      return row.map(function(cell) {
+        var s = String(cell).replace(/"/g, '""');
+        return '"' + s + '"';
+      }).join(';');
+    }).join('\r\n');
+
+    // BOM per Excel italiano (UTF-8)
+    var bom = '\uFEFF';
+    var blob = new Blob([bom + csv], { type: 'text/csv;charset=utf-8;' });
+    var url  = URL.createObjectURL(blob);
+    var a    = document.createElement('a');
+    a.href     = url;
+    a.download = 'invitati_matrimonio.csv';
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  if (supabaseReady()) {
+    fetch(SUPABASE_URL.replace(/\/$/, '') + '/rest/v1/rsvp?order=created_at.asc&select=*', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) { doExport(data); })
+    .catch(function() {
+      var local = [];
+      try { local = JSON.parse(localStorage.getItem('rsvp_responses') || '[]'); } catch(e) {}
+      doExport(local);
+    });
+  } else {
+    var local = [];
+    try { local = JSON.parse(localStorage.getItem('rsvp_responses') || '[]'); } catch(e) {}
+    doExport(local);
   }
 }
 
