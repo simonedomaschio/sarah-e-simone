@@ -561,11 +561,11 @@
   .story-carousel { width:100%; max-width:680px; margin:0 auto 3rem; }
   .c-wrap {
     width:100%; height:420px; overflow:hidden; position:relative;
-    background: #3A3530;
+    background: #EDE5D5;
   }
   .c-wrap::after {
     content:''; position:absolute; inset:0; pointer-events:none; z-index:1;
-    background: radial-gradient(ellipse at center, transparent 50%, rgba(30,26,22,0.4) 100%);
+    background: radial-gradient(ellipse at center, transparent 60%, rgba(180,165,140,0.2) 100%);
   }
   .c-strip  { display:flex; height:100%; transition:transform 0.5s ease; position:relative; z-index:0; }
   .c-item   { flex-shrink:0; width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
@@ -576,12 +576,12 @@
   }
   .c-prev, .c-next {
     position:absolute; top:50%; transform:translateY(-50%); z-index:5;
-    background:rgba(197,165,90,0.15); border:1px solid rgba(197,165,90,0.5);
-    color:#E8D4A0; width:44px; height:44px; font-size:1.5rem;
+    background:rgba(250,246,238,0.85); border:1px solid rgba(197,165,90,0.4);
+    color:var(--gold-text); width:44px; height:44px; font-size:1.5rem;
     display:flex; align-items:center; justify-content:center; cursor:pointer;
-    transition:all .25s; backdrop-filter:blur(4px); }
+    transition:all .25s; }
   .c-prev { left:10px; } .c-next { right:10px; }
-  .c-prev:hover, .c-next:hover { background:rgba(197,165,90,0.35); color:#fff; }
+  .c-prev:hover, .c-next:hover { background:rgba(197,165,90,0.25); }
   .c-cap { text-align:center; margin-top:0.9rem; font-family:'Cormorant Garamond',serif;
     font-style:italic; font-size:1.05rem; color:var(--text-mid); min-height:1.5em; letter-spacing:0.03em; }
   .c-dots { display:flex; justify-content:center; gap:6px; margin-top:0.7rem; }
