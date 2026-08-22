@@ -687,7 +687,7 @@
   </div>
 
   <div class="hero-cta">
-    <a href="#rsvp" class="btn">Conferma la tua presenza</a>
+    <a href="#rsvp" class="btn">Confermate la vostra presenza</a>
   </div>
 </section>
 
@@ -827,15 +827,15 @@
       </div>
 
       <div class="form-group">
-        <label class="form-label">Parteciperai?</label>
+        <label class="form-label">Parteciperete?</label>
         <div class="radio-group">
           <label class="radio-option">
             <input type="radio" name="presenza" value="si" checked>
-            <span>✓ Sì, ci sarò!</span>
+            <span>✓ Sì, ci saremo!</span>
           </label>
           <label class="radio-option">
             <input type="radio" name="presenza" value="no">
-            <span>Purtroppo non potrò</span>
+            <span>Purtroppo non potremo</span>
           </label>
         </div>
       </div>
@@ -868,7 +868,7 @@
 
         <div class="form-group">
           <label class="form-label">Note</label>
-          <textarea class="form-textarea" id="f-msg" placeholder="Scrivi qui i tuoi auguri o un pensiero..."></textarea>
+          <textarea class="form-textarea" id="f-msg" placeholder="Scrivete qui i vostri auguri o un pensiero..."></textarea>
         </div>
       </div>
 
@@ -880,7 +880,7 @@
     <div class="rsvp-success" id="rsvp-success">
       <div class="rsvp-success-icon">🌸</div>
       <h3 id="success-title">Grazie mille!</h3>
-      <p id="success-msg">Siamo felicissimi che tu possa essere con noi in questo giorno speciale. A presto!</p>
+      <p id="success-msg">Siamo felicissimi che possiate essere con noi in questo giorno speciale. A presto!</p>
     </div>
   </div>
 
@@ -908,7 +908,7 @@
     <div class="iban-block">
       <p class="iban-label">Coordinate bancarie</p>
       <div class="iban-row">
-        <span class="iban-number" id="iban-text">IT24 B062 3012 9060 0003 0504 996</span>
+        <span class="iban-number" id="iban-text">IT88 B036 6901 6006 2290 2687 113</span>
         <button class="iban-copy" onclick="copyIBAN(this)" id="iban-btn">Copia IBAN</button>
       </div>
       <p class="iban-intestato">Intestatari: Domaschio Simone e Messori Sarah</p>
@@ -1147,8 +1147,8 @@ function submitRSVP() {
     var s = document.getElementById('rsvp-success');
     s.classList.add('visible');
     if (presenza === 'no') {
-      document.getElementById('success-title').textContent = 'Ci mancherai!';
-      document.getElementById('success-msg').textContent   = 'Ci dispiace tanto che tu non possa essere con noi, ma grazie per averci fatto sapere. Saremo sempre vicini nel cuore.';
+      document.getElementById('success-title').textContent = 'Ci mancherete!';
+      document.getElementById('success-msg').textContent   = 'Ci dispiace tanto che non possiate essere con noi, ma grazie per averci fatto sapere. Saremo sempre vicini nel cuore.';
     }
   }
 
@@ -1192,7 +1192,7 @@ function salvaSuLocale(record) {
 
 // COPY IBAN
 function copyIBAN(btn) {
-  navigator.clipboard.writeText('IT24B0623012906000030504996').then(function() {
+  navigator.clipboard.writeText('IT88B0366901600622902687113').then(function() {
     btn.textContent = 'Copiato!';
     btn.classList.add('copied');
     setTimeout(function() { btn.textContent = 'Copia IBAN'; btn.classList.remove('copied'); }, 2500);
